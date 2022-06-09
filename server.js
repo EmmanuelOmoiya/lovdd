@@ -1,16 +1,17 @@
 const express = require("express");
+const port = process.env.PORT || 4080;
 const app = express();
-const jwt = require('jsonwebtoken');
 const cors = require('cors');
-  const bodyParser = require('body-parser');
-  const mongoose = require('mongoose');
-  const db = require('./config/db').uri
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const db = require('./config/db').uri
 var user = require("./model/user.js");
 const generateToken = require('./config/generateToken');
 
 mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log("Mongo Database successfully connected"))
 .catch(err => console.log(err));
 
+dotenv.config();
 
 app.use(cors());
 app.use(bodyParser.json());       // to support JSON-encoded bodies
@@ -107,6 +108,4 @@ app.post("/register", (req, res) => {
   }
 });
 
-app.listen(2000, () => {
-  console.log("Server is Runing On port 2000");
-});
+app.listen(port, console.log(`Server / Api running on port ${port}`));
