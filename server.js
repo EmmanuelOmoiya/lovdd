@@ -137,23 +137,6 @@ app.post("/register", (req, res) => {
   }
 });
 
-function checkUserAndGenerateToken(data, req, res) {
-  jwt.sign({ user: data.email, id: data._id }, 'shhhhh11111', { expiresIn: '1d' }, (err, token) => {
-    if (err) {
-      res.status(400).json({
-        status: false,
-        errorMessage: err,
-      });
-    } else {
-      res.json({
-        message: 'Login Successfully.',
-        token: token,
-        status: true
-      });
-    }
-  });
-}
-
 app.listen(2000, () => {
   console.log("Server is Runing On port 2000");
 });
