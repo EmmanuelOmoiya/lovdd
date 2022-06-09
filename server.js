@@ -2,6 +2,7 @@ const express = require("express");
 const port = process.env.PORT || 4080;
 const app = express();
 const cors = require('cors');
+const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const db = require('./config/db').uri
