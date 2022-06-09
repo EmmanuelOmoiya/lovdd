@@ -18,12 +18,8 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: false
 }));
 
-app.get("/", (req, res) => {
-  res.status(200).json({
-    status: true,
-    title: 'Apis'
-  });
-  res.send('Api is running')
+app.get('/', (req, res)=>{
+  res.send('Api is running');
 });
 
 /* login api */
