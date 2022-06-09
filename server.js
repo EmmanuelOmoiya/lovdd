@@ -18,37 +18,12 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: false
 }));
 
-app.use("/", (req, res, next) => {
-  try {
-    if (req.path == "/login" || req.path == "/register" || req.path == "/") {
-      next();
-    } else {
-      /* decode jwt token if authorized*/
-      jwt.verify(req.headers.token, 'shhhhh11111', function (err, decoded) {
-        if (decoded && decoded.user) {
-          req.user = decoded;
-          next();
-        } else {
-          return res.status(401).json({
-            errorMessage: 'User unauthorized!',
-            status: false
-          });
-        }
-      })
-    }
-  } catch (e) {
-    res.status(400).json({
-      errorMessage: 'Something went wrong!',
-      status: false
-    });
-  }
-})
-
 app.get("/", (req, res) => {
   res.status(200).json({
     status: true,
     title: 'Apis'
   });
+  res.send('Api is running')
 });
 
 /* login api */
